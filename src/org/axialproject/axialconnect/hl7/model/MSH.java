@@ -1,20 +1,34 @@
+/******************************************************************************* 
+ *  Copyright 2010-2011 Axial Exchange Inc., All rights reserved.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ ******************************************************************************* 
+ */
+
 package org.axialproject.axialconnect.hl7.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 
-import org.apache.tomcat.jni.Time;
-
+/**
+ * @author N. Lee Faus
+ * @version 0.1
+ */
 public class MSH extends Segment {
-	private char segment_value_seperator = '|';
-	private char end_of_segment = 0x0d;
-	
-	public String type = "MSH";
-	public String comment = "Message Header";
-	public String[] fields = {	"type",
+	private String type = "MSH";
+	private String comment = "Message Header";
+	private String[] fields = {	"type",
 								"encoding_characters", 
 								"sending_application", 
 								"sending_facility",
@@ -32,17 +46,6 @@ public class MSH extends Segment {
 								"application_ack_type", 
 								"country_code", 
 								"charset"};
-	
-	public String create(String[] params) {
-		StringBuffer ack = new StringBuffer();
-		ack.append(type);
-		for (String f : params) {
-			ack.append(segment_value_seperator);
-			ack.append(f);
-		}
-		ack.append(end_of_segment);
-		return ack.toString();
-	}
 	
 	public String createACK(HashMap<String, String> msh) {
 		MSH a_msh = new MSH();
@@ -68,19 +71,16 @@ public class MSH extends Segment {
 		return msg_body.toString();
 	}
 	
-	public HashMap<String, String> parse(String segment) {
-		HashMap<String, String> map = new HashMap();
-		Pattern p = Pattern.compile("[" + segment_value_seperator + "]");
-		String[] str = p.split(segment);
-		System.out.println("Fields :: " + fields.length);
-		System.out.println("Fields in Message :: " + str.length);
-		
-		int count = 0;
-		for (String f : str) {
-			System.out.println(fields[count] + " == " + str[count]);
-			map.put(fields[count], str[count]);
-			count++;
-		}
-		return map;
+	public String[] getFields() {
+		return fields;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+	
 }

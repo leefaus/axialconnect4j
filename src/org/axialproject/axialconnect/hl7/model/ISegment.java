@@ -14,31 +14,18 @@
  *  limitations under the License.
  ******************************************************************************* 
  */
-
 package org.axialproject.axialconnect.hl7.model;
+
+import java.util.HashMap;
 
 /**
  * @author N. Lee Faus
  * @version 0.1
  */
-public class ZP1 extends Segment {
-	private String type = "ZP1";
-	private String comment = "Extended Attributes";
-	private String[] fields = {	"type",
-								"notify_private_physician",
-								"practice_id", 
-								"no_news", 
-								"selective_privacy"};
+public interface ISegment {
+	
+	String create(String[] params);
 
-	public String[] getFields() {
-		return fields;
-	}
+	HashMap<String, String> parse(String segment, String[] fields);
 
-	public String getType() {
-		return type;
-	}
-
-	public String getComment() {
-		return comment;
-	}
 }
