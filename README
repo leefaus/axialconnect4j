@@ -1,0 +1,3 @@
+===== README =====
+
+After long investigations into MLLP/HL7 for some projects I have been working on, I found a need for a simpler way to handle HL7 than using the HAPI library for Java.  I have also been using MuleSoft ESB as part of my investigation so I decided to pair the two up.  The current structure is for importing into Eclipse and building into a Mule enabled Eclipse.  You can then use the mule-config.xml as a way to run the library.  To test your HL7, you can use the HL7 Explorer on sourceforge.  Happy Trails!
