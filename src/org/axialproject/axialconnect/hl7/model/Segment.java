@@ -105,10 +105,9 @@ public class Segment implements ISegment {
 	@Override
 	public String create(String[] params) {
 		StringBuffer ack = new StringBuffer();
-		ack.append(type);
 		for (String f : params) {
-			ack.append(segment_value_seperator);
 			ack.append(f);
+			ack.append(segment_value_seperator);
 		}
 		ack.append(end_of_segment);
 		return ack.toString();

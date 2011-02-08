@@ -52,7 +52,8 @@ public class MSH extends Segment {
 		MSA a_msa = new MSA();
 		String DATE_FORMAT = "yyyyMMddHHmm";
 		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-		String[] msh_f = {	msh.get("encoding_characters"), 
+		String[] msh_f = {  a_msh.getType(),
+							msh.get("encoding_characters"), 
 							msh.get("receiving_application"), 
 							msh.get("receiving_facility"), 
 							msh.get("sending_application"), 
@@ -63,7 +64,8 @@ public class MSH extends Segment {
 							msh.get("message_control_id"),
 							msh.get("processing_id"),
 							msh.get("version_id")};
-		String[] msa_f = {	"AA",
+		String[] msa_f = {	a_msa.getType(),
+							"AA",
 							msh.get("message_control_id")};
 		StringBuffer msg_body = new StringBuffer();
 		msg_body.append(a_msh.create(msh_f));
