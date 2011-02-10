@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:jms="http://www.mulesoft.org/schema/mule/jms"
+      xmlns:client="http://www.mulesoft.org/schema/mule/client"
+      xmlns:test="http://www.mulesoft.org/schema/mule/test"
+      xmlns:tcp="http://www.mulesoft.org/schema/mule/tcp"
+      xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      xmlns:hl7="http://www.mulesoft.org/schema/mule/hl7"
+      xsi:schemaLocation="
+          http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.1/mule-jms.xsd
+          http://www.mulesoft.org/schema/mule/client http://www.mulesoft.org/schema/mule/client/3.1/mule-client.xsd
+          http://www.mulesoft.org/schema/mule/test http://www.mulesoft.org/schema/mule/test/3.1/mule-test.xsd
+          http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+          http://www.mulesoft.org/schema/mule/tcp http://www.mulesoft.org/schema/mule/tcp/3.1/mule-tcp.xsd
+          http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/3.1/mule-vm.xsd
+          http://www.mulesoft.org/schema/mule/hl7 http://www.mulesoft.org/schema/mule/hl7/3.1/mule-hl7.xsd">
+
+	<!--<tcp:connector name="mllpConnector" receiveBufferSize="1024">-->
+		<!--<tcp:custom-protocol class="org.mule.transport.hl7.protocol.MLLPByteProtocol" rethrowExceptionOnRead="true"/>-->
+	<!--</tcp:connector>-->
+
+
+    <flow name="mllpFlow">
+        <hl7:inbound-endpoint host="localhost" port="13000"/>
+        <vm:outbound-endpoint path="output" exchange-pattern="one-way"/>
+    </flow>
+
+    <!--<model name="mllpSampleModel">-->
+		<!--<service name="mllpSample">-->
+			<!--<inbound>-->
+				<!--<tcp:inbound-endpoint host="localhost" port="13000" connector-ref="mllpConnector"/>-->
+			<!--</inbound>-->
+		<!--</service>-->
+	<!--</model>-->
+		
+</mule>
