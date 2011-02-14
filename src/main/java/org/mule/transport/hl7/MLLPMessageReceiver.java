@@ -50,7 +50,6 @@ public class MLLPMessageReceiver extends TcpMessageReceiver {
                 Message msg = (Message) readMsg;
                 protocol.write(dataOut, msg.create(msg.createACK(msg.getSegments().get(0))));
             }
-
             return readMsg;
         }
     }
