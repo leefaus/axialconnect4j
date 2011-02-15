@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <muleVersion>3.1.0</muleVersion>
+        <muleVersion>3.1.1-SNAPSHOT</muleVersion>
     </properties>
 
     <dependencies>
@@ -22,13 +22,13 @@
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-http</artifactId>
-            <version>3.1.0</version>
+            <version>${muleVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-tcp</artifactId>
-            <version>3.1.0</version>
+            <version>${muleVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -87,32 +87,14 @@
             </plugin>
         </plugins>
     </build>
-    <!--<plugins>-->
-    <!--<plugin>-->
-    <!--<artifactId>maven-shade-plugin</artifactId>-->
-    <!--<executions>-->
-    <!--<execution>-->
-    <!--<phase>package</phase>-->
-    <!--<goals>-->
-    <!--<goal>shade</goal>-->
-    <!--</goals>-->
-    <!--<configuration>-->
-    <!--<artifactSet>-->
-    <!--<includes>-->
-    <!--<include>org.samba.jcifs:jcifs</include>-->
-    <!--</includes>-->
-    <!--</artifactSet>-->
-    <!--</configuration>-->
-    <!--</execution>-->
-    <!--</executions>-->
-    <!--</plugin>-->
-    <!--<plugin>-->
-    <!--<artifactId>maven-compiler-plugin</artifactId>-->
-    <!--<configuration>-->
-    <!--<source>1.5</source>-->
-    <!--<target>1.5</target>-->
-    <!--</configuration>-->
-    <!--</plugin>-->
-    <!--</plugins>-->
-    <!--</build>-->
+
+    <repositories>
+        <repository>
+            <id>mule-snapshot</id>
+            <url>http://snapshots.repository.codehaus.org/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
