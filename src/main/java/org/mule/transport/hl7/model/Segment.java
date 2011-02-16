@@ -89,12 +89,9 @@ public class Segment implements ISegment {
 		HashMap<String, String> map = new HashMap<String, String>();
 		Pattern p = Pattern.compile("[" + segment_value_seperator + "]");
 		String[] str = p.split(segment);
-		System.out.println("Fields :: " + fields.length);
-		System.out.println("Fields in Message :: " + str.length);
 		
 		int count = 0;
 		for (String f : str) {
-			System.out.println(fields[count] + " == " + str[count]);
 			map.put(fields[count], f);
 			count++;
 		}

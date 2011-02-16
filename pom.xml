@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-annotations</artifactId>
-            <version>3.1.0</version>
+            <version>${muleVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
@@ -61,6 +61,12 @@
             <version>${muleVersion}</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+           <groupId>org.mule.modules</groupId>
+           <artifactId>mule-module-scripting</artifactId>
+           <version>${muleVersion}</version>
+           <scope>test</scope>
+       </dependency>
         <dependency>
             <groupId>org.mule.tests</groupId>
             <artifactId>mule-tests-functional</artifactId>

@@ -22,26 +22,18 @@
 	<!--<tcp:connector name="mllpConnector" receiveBufferSize="1024">-->
 		<!--<tcp:custom-protocol class="org.mule.transport.hl7.protocol.MLLPByteProtocol" rethrowExceptionOnRead="true"/>-->
 	<!--</tcp:connector>-->
-    <amqp:connector name="amqpTest" host="localhost" port="5672" activeDeclarationsOnly="true"  />
+    <amqp:connector name="amqpTest" host="localhost" port="5672" />
     <custom-transformer name="hl7MessageToString" class="org.mule.transport.hl7.model.HL7MessageToStringTransformer" returnClass="java.lang.String" />
-    
+
 
     <flow name="mllpFlow">
         <hl7:inbound-endpoint host="localhost" port="13000"/>
-        <choice>
-            <when expression="org.mule.transport.hl7.model.Message" evaluator="payload-type">
-
-                <amqp:outbound-endpoint connector-ref="amqpTest" queueName="webpush" >
+        <all>
+                <amqp:outbound-endpoint connector-ref="amqpTest" queueName="webpush" queueAutoDelete="false" queueDurable="false">
                     <transformer ref="hl7MessageToString" />
                 </amqp:outbound-endpoint>
-
-            </when>
-            <otherwise>
-                 <vm:outbound-endpoint path="output" exchange-pattern="one-way"/>
-            </otherwise>
-        </choice>
-
-
+                <vm:outbound-endpoint path="output" exchange-pattern="one-way"/>
+        </all>
     </flow>
 
     <!--<model name="mllpSampleModel">-->

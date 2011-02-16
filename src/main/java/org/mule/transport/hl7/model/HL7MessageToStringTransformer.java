@@ -16,6 +16,6 @@ public class HL7MessageToStringTransformer extends AbstractTransformer {
     @Override
     protected String doTransform(Object o, String s) throws TransformerException {
         Message message = (Message) o;
-        return o.toString();  //To change body of implemented methods use File | Settings | File Templates.
+        return o.toString();
     }
 }
